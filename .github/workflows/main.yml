@@ -30,4 +30,4 @@ jobs:
           # Kasadaki şifreleri buraya çağırıyoruz
           MONGO_URI: ${{ secrets.MONGO_URI }}
           RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
-        run: python main.py
+        run: python main_analysis_github.py
