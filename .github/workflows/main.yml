@@ -1,0 +1,33 @@
+name: Haftalik Jobverse Analizi
+
+on:
+  schedule:
+    # Bu kod her PAZAR günü sabah 09:00'da (UTC) çalışır.
+    - cron: '0 9 * * 0'
+  
+  # İstersen elle "Run" butonuna basıp çalıştırmak için:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Depoyu Kontrol Et
+        uses: actions/checkout@v3
+
+      - name: Python Kurulumu
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Kütüphaneleri Yükle
+        run: |
+          pip install -r requirements.txt
+
+      - name: Analizi Çalıştır
+        env:
+          # Kasadaki şifreleri buraya çağırıyoruz
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
+        run: python main.py
