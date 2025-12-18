@@ -14,7 +14,7 @@ RAPID_API_KEY = os.environ.get("RAPID_API_KEY")
 
 # --- ADIM 1: VERİ ÇEKME (API) ---
 # Pages sayısını 10'a çıkardık (Haftalık ~150 ilan)
-def fetch_job_data(query="Developer", pages=10):
+def fetch_job_data(query="Developer", pages=20):
     print(f"⏳ '{query}' için API'den {pages} sayfa veri çekiliyor...")
     all_jobs = []
 
@@ -61,7 +61,7 @@ def run_pipeline():
     print("🧹 Eski veriler temizlendi.")
 
     # B) Veriyi Getir (10 Sayfa)
-    df = fetch_job_data(query="Developer", pages=10)
+    df = fetch_job_data(query="Developer", pages=20)
 
     if df.empty:
         print("⚠️ Veri gelmedi, işlem iptal.")
